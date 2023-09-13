@@ -1,7 +1,7 @@
 # OSM TILES DOWNLOADER 
 
 Osm Tiles Downloader allows you to download tiles in a given bounding box for your required zoom levels
-It also provides a react app to test your map tiles with leaflet and react-leaflet
+It also provides a react app named tiles_tester to test your map tiles with leaflet and react-leaflet
 
 ## Installation of Tiles Downloader 
 
