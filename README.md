@@ -17,4 +17,3 @@ npm i
 ```bash
 node download-tiles.js --bbox lat_start,lng_start,lat_end,lng_end --zooms 0,1,2,3,4 --output output_directory
 ```
-
