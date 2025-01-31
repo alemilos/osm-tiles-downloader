@@ -10,7 +10,7 @@ Clone the repo, install packages with npm and create a symlink to access the scr
 git clone https://github.com/alemilos/osm-tiles-downloader.git
 cd osm-tiles-downloader
 npm i
-npm link
+sudo npm link
 ```
 
 After linking, the script will be available globally using
