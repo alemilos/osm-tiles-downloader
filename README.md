@@ -26,7 +26,7 @@ tiles-download [options]
 To download tiles for a custom region (defined by the bounding box) and specific zoom levels, use the following command:
 
 ```bash
-tiles-download --bbox lat_max,lng_max,lat_min,lng_min --zooms 0,1,2,3,4 --output output_directory
+tiles-download --bbox="lat_max,lng_max,lat_min,lng_min" --zooms 0,1,2,3,4 --output output_directory
 ```
 
 ### Download Tiles with Custom Region and World Zoom Levels (Full Zooms Take Priority)
@@ -34,7 +34,7 @@ tiles-download --bbox lat_max,lng_max,lat_min,lng_min --zooms 0,1,2,3,4 --output
 If you want to include both custom zoom levels and global zoom levels (where full zoom levels take priority), use:
 
 ```bash
-tiles-download --bbox lat_max,lng_max,lat_min,lng_min --zooms 0,1,2,3,4 --full-zooms 0,1,2,3 --output output_directory
+tiles-download --bbox="lat_max,lng_max,lat_min,lng_min" --zooms 0,1,2,3,4 --full-zooms 0,1,2,3 --output output_directory
 ```
 
 ### Download Tiles for Specific Countries
