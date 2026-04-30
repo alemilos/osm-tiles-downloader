@@ -1,60 +1,163 @@
-# OSM TILES DOWNLOADER
+## OSM Tiles Downloader – Detailed Guide
 
-Osm Tiles Downloader allows you to download tiles in a given bounding box for your required zoom levels
+The `osm-tiles-downloader` tool allows you to download map tiles for offline usage based on a geographic area and zoom levels.
 
-## Installation of Tiles Downloader
+---
 
-Clone the repo, install packages with npm and create a symlink to access the script globally
+### Installation
+
+Clone the repository, install dependencies, and link the CLI globally:
 
 ```bash
 git clone https://github.com/alemilos/osm-tiles-downloader.git
 cd osm-tiles-downloader
-npm i
+npm install
 sudo npm link
 ```
 
-After linking, the script will be available globally using
+After linking, the command will be available globally:
 
-```
+```bash
 tiles-download [options]
 ```
 
-## Usage
+---
 
-### Download Tiles for a Custom Bounded Region with Specific Zoom Levels
+### Basic Usage
 
-To download tiles for a custom region (defined by the bounding box) and specific zoom levels, use the following command:
+#### Download Tiles for a Custom Bounding Box
 
 ```bash
 tiles-download --bbox="lat_max,lng_max,lat_min,lng_min" --zooms 0,1,2,3,4 --output output_directory
 ```
 
-### Download Tiles with Custom Region and World Zoom Levels (Full Zooms Take Priority)
-
-If you want to include both custom zoom levels and global zoom levels (where full zoom levels take priority), use:
+#### Download Tiles with Global Zoom Levels
 
 ```bash
-tiles-download --bbox="lat_max,lng_max,lat_min,lng_min" --zooms 0,1,2,3,4 --full-zooms 0,1,2,3 --output output_directory
+tiles-download --bbox="lat_max,lng_max,lat_min,lng_min" --zooms 4,5,6 --full-zooms 0,1,2,3 --output output_directory
 ```
 
-### Download Tiles for Specific Countries
+- `--full-zooms` downloads **entire world tiles** for specified zoom levels
+- `--zooms` applies only to the defined bounding box
 
-You can also download tiles for a specific country by using its country code. Below are a few examples:
-
-- For Italy (country code: it)
+#### Download Tiles by Country Code
 
 ```bash
 tiles-download --country-code it --zooms 0,1,2,3,4 --output output_directory
 ```
 
-- For France (country code: fr )
+When using `--country-code`, the bounding box is automatically determined.
+
+---
+
+### Options Reference
+
+#### `--help`
+
+Displays the help message and exits.
+
+#### `--example`
+
+Shows a usage example for quick reference.
+
+#### `--url`
+
+Displays the tile server URL used by the script.
+
+---
+
+#### `--bbox`
+
+Defines the geographic bounding box using four comma-separated values:
 
 ```
-tiles-download --country-code fr --full-zooms 0,1,2,3 --output output_directory
+LAT_MAX, LNG_MAX, LAT_MIN, LNG_MIN
 ```
 
-- For Argentina (country code: fr )
+- Represents the **north-west** and **south-east** corners
+- Example:
 
+```bash
+--bbox="21.099875,-110.537651,-58.736856,-27.513502"
 ```
-tiles-download --country-code ar --zooms 6,7,13,12  --full-zooms 0,1,2,3 --output output_directory
+
+Notes:
+
+- Spaces are allowed but optional
+- Required unless `--country-code` is used
+
+---
+
+#### `--zooms` (required)
+
+Specifies which zoom levels to download.
+
+```bash
+--zooms 1,5,7,8
 ```
+
+- Valid range: `0–18`
+- Higher zoom = more detail = significantly more tiles
+
+---
+
+#### `--output` (required)
+
+Defines the directory where tiles will be saved.
+
+```bash
+--output ./tiles
+```
+
+Make sure:
+
+- The directory exists or is writable
+- You have enough disk space
+
+---
+
+#### `--country-code`
+
+Uses a predefined bounding box based on a country.
+
+```bash
+--country-code it
+```
+
+- Replaces the need for `--bbox`
+- Uses standard ISO country codes (e.g. `it`, `fr`, `ar`)
+
+---
+
+#### `--full-zooms`
+
+Specifies zoom levels for which **all world tiles** should be downloaded.
+
+```bash
+--full-zooms 0,1,2,3
+```
+
+Behavior:
+
+- Downloads the entire world for these zoom levels
+- If combined with `--zooms`, those zooms apply only to the bounding box
+
+---
+
+### Important Notes
+
+- Tile downloads can become extremely large at high zoom levels
+- Always test with a small area and low zooms first
+- Combining `--full-zooms` with high zoom levels can consume significant storage
+- Ensure stable internet connection during download
+
+---
+
+### Recommended Workflow
+
+1. Start with low zoom levels (e.g. `0–5`) to validate setup
+2. Gradually increase zoom levels based on needs
+3. Limit bounding box size to reduce download volume
+4. Verify tiles before integrating into the application
+
+---
