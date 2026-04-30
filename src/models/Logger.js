@@ -21,7 +21,7 @@ Options:
                  Basically the North West and South East points that defines the bounding box   
                  (e.g. 21.099875,-110.537651,-58.736856,-27.513502 or "21.099875, -110.537651, -58.736856, -27.513502)
 
- --zooms         (required) Specify zoom levels as a comma-separated list in the range (0-16)
+ --zooms         (required) Specify zoom levels as a comma-separated list in the range (0-18)
                  (e.g. 1,5,7,8 will download tiles at zoom levels 1,5,7,8)  
 
  --output        (required) Set the output directory for downloaded tiles         
@@ -81,7 +81,7 @@ The URL used to fetch tiles is: https://tile.openstreetmap.org/{z}/{x}/{y}.png\n
 
   invalid_zooms() {
     console.error(
-      `❌ zooms must receive comma separated integers in range 0,16`
+      `❌ zooms must receive comma separated integers in range 0,18`
     );
     process.exit(0);
   },

@@ -42,7 +42,7 @@ const parseBoundingBox = (bbox) => {
  */
 const parseZooms = (zooms, max = 7) => {
   const minAcceptedZoom = 0;
-  const maxAcceptedZoom = max; // 7 for full world tiles, 16 for bounded ones
+  const maxAcceptedZoom = max; // 7 for full world tiles, 18 for bounded ones
   // altough 18 is the max zoom for leaflet, this causes stack overflow issues and would probably give issues on download (for full world tiles it is much worse)
 
   let invalidZooms;

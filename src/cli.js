@@ -46,7 +46,7 @@ if (args.bbox) {
 // Retrieve zoom levels
 if (args.zooms) {
   try {
-    const zooms = parseZooms(args.zooms, 16);
+    const zooms = parseZooms(args.zooms, 18);
     ZOOMS = zooms;
   } catch (err) {
     Logger.invalid_zooms();
